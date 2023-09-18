@@ -1,0 +1,14 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: #282c34 !important;
+}
+
+.headerPosition {
+  align-items: center;
+  justify-content: center;
+  display: inline-grid;
+  margin-bottom: 1.5rem;
+}
