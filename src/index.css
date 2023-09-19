@@ -12,3 +12,29 @@ body {
   display: inline-grid;
   margin-bottom: 1.5rem;
 }
+
+.searchInputArea fieldset {
+  border-color: rgb(94 94 94) !important;
+}
+
+.searchInputArea fieldset:hover {
+  border-color: rgb(94 94 94) !important;
+}
+
+.searchInputArea fieldset:focus {
+  border-color: rgb(94 94 94) !important;
+}
+
+#searchKeyInput {
+  color: white !important;
+}
+
+#searchKeyInput-label {
+  color: rgb(94 94 94) !important;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    margin-top: 10%;
+  }
+}
