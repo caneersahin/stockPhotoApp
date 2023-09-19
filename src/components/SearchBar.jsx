@@ -1,22 +1,31 @@
-import React, { useState } from "react"; // useState eklemeyi unutmayın
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
-import imageList from "../store/store";
 import axios from "axios";
+import Badge from "@mui/material/Badge";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import Modals from "./Modal";
+import { imageList, favoriStore } from "../store/store";
+
 function SearchBar() {
+  const { totalFavoriler } = favoriStore();
   const [searchValue, setSearchValue] = useState("");
   const { setSearchResults } = imageList();
 
-  var api_key = "MW7V83I2xdw0xM8njHRntkFIF5ZvyjDK2EMmxEoZvC2X1qejgOUrxHJl";
-
+  const [modalShow, setModalShow] = useState(false);
+  const openModal = () => {
+    setModalShow(true);
+  };
+  
   const handleSearch = async () => {
     if (searchValue.trim() == "") {
       alert("Lütfen aramak istediğiniz kelimeyi yazınız.");
       return;
     }
     try {
+      var api_key = "MW7V83I2xdw0xM8njHRntkFIF5ZvyjDK2EMmxEoZvC2X1qejgOUrxHJl";
       const headers = {
         Authorization: api_key,
       };
@@ -36,6 +45,12 @@ function SearchBar() {
     }
   };
 
+  const handleEnterPress = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <>
       <Box sx={{ width: "100%", maxWidth: "100%" }}>
@@ -46,7 +61,16 @@ function SearchBar() {
           id="searchKeyInput"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
+          onKeyDown={handleEnterPress}
         />
+        <Badge
+          onClick={openModal}
+          badgeContent={totalFavoriler}
+          className="mt-3"
+          color="primary"
+        >
+          <FavoriteIcon style={{ color: "red" }} />
+        </Badge>
       </Box>
       <Button
         style={{ marginTop: "1rem" }}
@@ -54,8 +78,9 @@ function SearchBar() {
         variant="contained"
         endIcon={<SearchIcon />}
       >
-        Search
+        Arama Yap
       </Button>
+      <Modals show={modalShow} onHide={() => setModalShow(false)} />
     </>
   );
 }
