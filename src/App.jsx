@@ -1,32 +1,19 @@
-import "./App.css";
-import Header from "./components/Header";
-import SearchBar from "./components/SearchBar";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import ImageCardItem from "./components/ImageCardItem";
-import { imageList } from "./store/store";
-import { useEffect } from "react";
-function App() {
+import { BrowserRouter, Route, Routes, NavLink } from 'react-router-dom';
+import Login from './components/Login';
+import Index from './components/Index';
+import React, { useEffect } from "react";
 
-  const searchResults = imageList((state) => state.searchResults);
-  useEffect(() => {}, [searchResults]); // searchResults değiştiğinde bu etki yeniden çalışır
+
+
+function App() {
   return (
-    <>
-      <Container>
-        <Row>
-          <Col md={{ span: 6, offset: 3 }} className="headerPosition">
-            <Header />
-            <SearchBar />
-          </Col>
-        </Row>
-        <Row>
-          {searchResults.photos?.map((item, index) => (
-            <ImageCardItem key ={index} item={item} />
-          ))}
-        </Row>
-      </Container>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Index />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

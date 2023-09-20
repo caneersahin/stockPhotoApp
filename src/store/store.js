@@ -1,5 +1,6 @@
 // store.js
 import { create } from 'zustand';
+import axios from "axios";
 
 const imageList = create((set) => ({
   searchResults: '', // API'den gelen sonuçları saklamak için bir dizi
