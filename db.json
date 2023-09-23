@@ -1,16 +1,20 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "username": "test",
-            "password": "1",
-            "favImageIdList": []
-        },
-        {
-            "id": 2,
-            "username": "test2",
-            "password": "2",
-            "favImageIdList": []
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "username": "test",
+      "password": 1,
+      "favImageIdList": [
+        1366942,
+        263194,
+        1366944
+      ]
+    },
+    {
+      "id": 2,
+      "username": "test2",
+      "password": "2",
+      "favImageIdList": []
+    }
+  ]
 }

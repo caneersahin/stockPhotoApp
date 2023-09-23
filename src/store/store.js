@@ -1,6 +1,8 @@
 // store.js
 import { create } from 'zustand';
-import axios from "axios";
+import { sendRequestToApi, removeFromFavorites } from '../api/api'; // api.js dosyasını içe aktarın
+import { useNavigate } from 'react-router-dom';
+
 
 const imageList = create((set) => ({
   searchResults: '', // API'den gelen sonuçları saklamak için bir dizi
@@ -12,18 +14,34 @@ const favoriStore = create((set) => ({
   totalFavoriler: 0, // Toplam favori sayısı
 
   // Favorilere eklemek için bir işlev
-  addToFavorites: (id) => {
-    set((state) => ({
-      favoriList: [...state.favoriList, id],
-      totalFavoriler: state.totalFavoriler + 1,
-    }));
+  addToFavorites: async (id) => {
+    try {
+      const result = await sendRequestToApi(id);
+      if (result == "loginHata") {
+
+      }
+      set((state) => ({
+        favoriList: result,
+        totalFavoriler: result.length,
+      }));
+    } catch (error) {
+      console.error('API isteği başarısız oldu:', error);
+    }
   },
-  // Favorilerden çıkartmak için bir işlev
-  removeFromFavorites: (id) => {
-    set((state) => ({
-      favoriList: state.favoriList.filter((itemId) => itemId !== id),
-      totalFavoriler: state.totalFavoriler - 1,
-    }));
+
+  removeFromFavorites: async (id) => {
+    try {
+      // Axios isteği tamamlandığında sonucu alın
+      const result = await removeFromFavorites(id);
+
+      // Sonucu kullanarak totalFavoriler'i güncelleyin
+      set((state) => ({
+        favoriList: result,
+        totalFavoriler: result.length,
+      }));
+    } catch (error) {
+      console.error('API isteği başarısız oldu:', error);
+    }
   },
 }));
 

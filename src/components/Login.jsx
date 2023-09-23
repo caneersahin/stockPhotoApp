@@ -12,7 +12,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from "axios";
+import { loginUser } from "../api/api" // api.js dosyasını içe aktarın
 import { useNavigate } from 'react-router-dom';
 
 
@@ -31,34 +31,17 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-
-
 export default function SignInSide() {
   const navigate = useNavigate();
-
-  const baseURL = 'http://localhost:3001'; // JSON Server'ın çalıştığı URL
-  async function loginUser(username, password) {
-    try {
-      const response = await axios.get(`${baseURL}/users?username=${username}&password=${password}`);
-      const users = response.data;
-      if (users.length === 1) {
-        var kullaniciAdiVeSifre = "123-" + username+"&"+password + "-123"
-        document.cookie = "hash="+ kullaniciAdiVeSifre;
-        navigate('/dashboard');
-      } else {
-        alert("hata")
-        return null; // Kullanıcı bulunamadı veya birden fazla kullanıcı var
-      }
-    } catch (error) {
-      console.error('Oturum açma sırasında bir hata oluştu:', error);
-      throw error;
-    }
-  }
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    loginUser(data.get('username'), data.get('password'))
+    const result = await loginUser(data.get('username'), data.get('password'));
+    if (result) {
+      navigate('/dashboard');
+    } else {
+      console.log('Kullanıcı bulunamadı veya hata oluştu');
+    }
   };
 
   return (

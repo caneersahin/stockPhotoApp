@@ -9,6 +9,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Modals from "./Modal";
 import { imageList, favoriStore } from "../store/store";
 
+
 function SearchBar() {
   const { totalFavoriler } = favoriStore();
   const [searchValue, setSearchValue] = useState("");
@@ -18,7 +19,7 @@ function SearchBar() {
   const openModal = () => {
     setModalShow(true);
   };
-  
+
   const handleSearch = async () => {
     if (searchValue.trim() == "") {
       alert("Lütfen aramak istediğiniz kelimeyi yazınız.");
