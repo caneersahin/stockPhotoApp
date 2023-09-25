@@ -8,7 +8,7 @@ import { imageList } from "../store/store";
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from "../api/api" // api.js dosyasını içe aktarın
-import axios from 'axios';
+import HeaderMenu from './HeaderMenu';
 
 
 
@@ -39,10 +39,10 @@ function Index() {
 
   return (
     <>
-      <Container>
+    <HeaderMenu/>
+      <Container style={{marginTop:"1.5rem"}}>
         <Row>
           <Col md={{ span: 6, offset: 3 }} className="headerPosition">
-            <Header />
             <SearchBar />
           </Col>
         </Row>
