@@ -22,7 +22,7 @@ import Buttons from 'react-bootstrap/Button';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+      {' © '}
       <Link color="inherit" href="http://canersahin.net/">
         Caner SAHIN
       </Link>{' '}
@@ -129,10 +129,10 @@ export default function SignInSide() {
                   id="password"
                   autoComplete="current-password"
                 />
-                <FormControlLabel
+                {/* <FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}
                   label="Remember me"
-                />
+                /> */}
                 <Button
                   type="submit"
                   fullWidth
@@ -144,7 +144,7 @@ export default function SignInSide() {
                 <Grid container style={{ display: "flex", justifyContent: "center" }}>
                   <Grid item onClick={handleSingUpModalShow} >
                     <Link href="#" variant="body2">
-                      {"Don't have an account? Sign Up"}
+                      {"Hesabınız yok mu? Hemen üye olun"}
                     </Link>
                   </Grid>
                 </Grid>
