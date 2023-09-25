@@ -8,6 +8,8 @@ import Badge from "@mui/material/Badge";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Modals from "./Modal";
 import { imageList, favoriStore } from "../store/store";
+import { showSweetAlert } from "../api/api";
+
 
 
 function SearchBar() {
@@ -22,7 +24,7 @@ function SearchBar() {
 
   const handleSearch = async () => {
     if (searchValue.trim() == "") {
-      alert("Lütfen aramak istediğiniz kelimeyi yazınız.");
+      showSweetAlert("Lütfen aramak istediğiniz kelimeyi yazınız.")
       return;
     }
     try {

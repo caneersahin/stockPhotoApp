@@ -1,6 +1,6 @@
 // store.js
 import { create } from 'zustand';
-import { sendRequestToApi, removeFromFavorites } from '../api/api'; // api.js dosyasını içe aktarın
+import { addToFavoriteList, removeToFavoriteList } from '../api/api'; // api.js dosyasını içe aktarın
 import { useNavigate } from 'react-router-dom';
 
 
@@ -16,7 +16,7 @@ const favoriStore = create((set) => ({
   // Favorilere eklemek için bir işlev
   addToFavorites: async (id) => {
     try {
-      const result = await sendRequestToApi(id);
+      const result = await addToFavoriteList(id);
       if (result == "loginHata") {
 
       }
@@ -31,10 +31,7 @@ const favoriStore = create((set) => ({
 
   removeFromFavorites: async (id) => {
     try {
-      // Axios isteği tamamlandığında sonucu alın
-      const result = await removeFromFavorites(id);
-
-      // Sonucu kullanarak totalFavoriler'i güncelleyin
+      const result = await removeToFavoriteList(id);
       set((state) => ({
         favoriList: result,
         totalFavoriler: result.length,

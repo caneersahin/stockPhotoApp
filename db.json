@@ -3,18 +3,47 @@
     {
       "id": 1,
       "username": "test",
+      "mail": "ali",
       "password": 1,
       "favImageIdList": [
-        1366942,
+        3999943,
+        3684396,
+        3380743,
         263194,
-        1366944
+        6787850,
+        5697255,
+        163016
       ]
     },
     {
       "id": 2,
-      "username": "test2",
-      "password": "2",
-      "favImageIdList": []
+      "username": "ali",
+      "mail": "ali",
+      "password": "123",
+      "favImageIdList": [
+        8552849,
+        18301884
+      ]
+    },
+    {
+      "username": "333",
+      "mail": "test33",
+      "password": "123",
+      "favImageIdList": [],
+      "id": 3
+    },
+    {
+      "username": "caner",
+      "mail": "caner",
+      "password": "1",
+      "favImageIdList": [
+        3380743,
+        16124525,
+        17568780,
+        18350775,
+        186537
+      ],
+      "id": 4
     }
   ]
 }
